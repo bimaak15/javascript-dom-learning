@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tutorial interaktif belajar JavaScript DOM untuk pemula. Pelajari cara memanipulasi elemen HTML menggunakan JavaScript.">
+    <title>Belajar JavaScript DOM — Tutorial Interaktif</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- ============================================
+             HERO SECTION — Judul Halaman Tutorial
+             ============================================ -->
+        <section class="hero">
+            <h1>🚀 Belajar JavaScript DOM</h1>
+            <p class="subtitle">
+                Tutorial interaktif untuk memahami cara JavaScript berinteraksi dengan halaman web.
+                Klik tombol-tombol di bawah untuk melihat hasilnya secara langsung!
+            </p>
+            <span class="badge">👨‍💻 Cocok untuk Pemula</span>
+        </section>
+
+        <!-- ============================================
+             DAFTAR ISI
+             ============================================ -->
+        <nav class="toc">
+            <h2>📚 Daftar Isi</h2>
+            <ol>
+                <li><a href="#section-1">getElementById — Mengambil Elemen by ID</a></li>
+                <li><a href="#section-2">querySelector — Mengambil Elemen by CSS Selector</a></li>
+                <li><a href="#section-3">Mengubah Konten Elemen</a></li>
+                <li><a href="#section-4">Mengubah Style / CSS</a></li>
+                <li><a href="#section-5">Event Listener — Menambahkan Interaksi</a></li>
+                <li><a href="#section-6">Membuat & Menghapus Elemen</a></li>
+                <li><a href="#section-7">Latihan: To-Do List Mini</a></li>
+            </ol>
+        </nav>
+
+        <!-- ============================================
+             SECTION 1: getElementById
+             ============================================ -->
+        <section class="section-card" id="section-1">
+            <h2><span class="section-number">1</span> getElementById</h2>
+            <p class="section-desc">Cara paling dasar untuk mengambil satu elemen HTML berdasarkan atribut <code>id</code>.</p>
+
+            <div class="explanation">
+                <strong>Apa itu getElementById?</strong><br>
+                Bayangkan setiap elemen HTML punya "nama" unik yang disebut <code>id</code>.
+                Dengan <code>document.getElementById("namaId")</code>, kita bisa "mengambil" elemen tersebut
+                supaya bisa kita manipulasi (ubah teks, warna, dll) menggunakan JavaScript.<br><br>
+                🔑 <strong>Ingat:</strong> ID harus unik! Satu halaman hanya boleh punya satu elemen dengan ID yang sama.
+            </div>
+
+            <!-- Blok kode contoh -->
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <span class="lang-badge">JavaScript</span>
+                </div>
+<pre>
+<span class="comment">// Langkah 1: Ambil elemen yang punya id="demo-heading"</span>
+<span class="keyword">let</span> <span class="variable">heading</span> = <span class="variable">document</span>.<span class="method">getElementById</span>(<span class="string">"demo-heading"</span>);
+
+<span class="comment">// Langkah 2: Ubah teksnya</span>
+<span class="variable">heading</span>.<span class="method">innerText</span> = <span class="string">"Teks ini diubah oleh JavaScript! 🎉"</span>;
+</pre>
+            </div>
+
+            <!-- Area Demo -->
+            <div class="demo-area">
+                <span class="demo-label">Demo</span>
+                <h3 id="demo-heading">Halo! Saya heading asli.</h3>
+                <p id="demo-paragraph">Saya paragraf yang bisa diubah.</p>
+            </div>
+
+            <button class="btn btn-primary" id="btn-demo-1" onclick="demoGetElementById()">▶ Coba Jalankan</button>
+            <button class="btn btn-reset btn-small" onclick="resetDemo1()">↺ Reset</button>
+
+            <div class="result-log" id="result-1">Klik tombol di atas untuk melihat hasilnya...</div>
+        </section>
+
+        <!-- ============================================
+             SECTION 2: querySelector & querySelectorAll
+             ============================================ -->
+        <section class="section-card" id="section-2">
+            <h2><span class="section-number">2</span> querySelector</h2>
+            <p class="section-desc">Mengambil elemen menggunakan CSS Selector — lebih fleksibel dari getElementById!</p>
+
+            <div class="explanation">
+                <strong>querySelector vs querySelectorAll:</strong><br>
+                • <code>querySelector(".kelas")</code> → Mengambil <strong>satu</strong> elemen pertama yang cocok<br>
+                • <code>querySelectorAll(".kelas")</code> → Mengambil <strong>semua</strong> elemen yang cocok (hasilnya berupa NodeList/daftar)<br><br>
+                Bisa pakai selector CSS apa saja: <code>#id</code>, <code>.class</code>, <code>tag</code>, <code>tag.class</code>, dll.
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <span class="lang-badge">JavaScript</span>
+                </div>
+<pre>
+<span class="comment">// querySelector — Ambil elemen pertama dengan class "buah"</span>
+<span class="keyword">let</span> <span class="variable">pertama</span> = <span class="variable">document</span>.<span class="method">querySelector</span>(<span class="string">".buah"</span>);
+
+<span class="comment">// querySelectorAll — Ambil SEMUA elemen dengan class "buah"</span>
+<span class="keyword">let</span> <span class="variable">semua</span> = <span class="variable">document</span>.<span class="method">querySelectorAll</span>(<span class="string">".buah"</span>);
+
+<span class="comment">// Loop (perulangan) untuk ubah semua elemen</span>
+<span class="variable">semua</span>.<span class="method">forEach</span>(<span class="keyword">function</span>(<span class="variable">item</span>) {
+    <span class="variable">item</span>.<span class="variable">style</span>.<span class="method">color</span> = <span class="string">"cyan"</span>;
+});
+</pre>
+            </div>
+
+            <div class="demo-area">
+                <span class="demo-label">Demo</span>
+                <div id="demo-query-area">
+                    <span class="buah" id="buah-1">🍎 Apel</span>
+                    <span class="buah" id="buah-2">🍌 Pisang</span>
+                    <span class="buah" id="buah-3">🍇 Anggur</span>
+                    <span class="buah" id="buah-4">🍊 Jeruk</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="demoQuerySelector()">▶ Ubah Semua Buah</button>
+            <button class="btn btn-reset btn-small" onclick="resetDemo2()">↺ Reset</button>
+
+            <div class="result-log" id="result-2">Klik tombol untuk mengubah warna semua buah...</div>
+        </section>
+
+        <!-- ============================================
+             SECTION 3: Mengubah Konten
+             ============================================ -->
+        <section class="section-card" id="section-3">
+            <h2><span class="section-number">3</span> Mengubah Konten</h2>
+            <p class="section-desc">Perbedaan antara <code>innerText</code>, <code>innerHTML</code>, dan <code>textContent</code>.</p>
+
+            <div class="explanation">
+                <strong>Tiga cara mengubah konten elemen:</strong><br>
+                • <code>innerText</code> → Mengubah teks yang terlihat (tanpa tag HTML)<br>
+                • <code>innerHTML</code> → Mengubah konten HTML (bisa memasukkan tag HTML)<br>
+                • <code>textContent</code> → Mirip innerText, tapi mengambil SEMUA teks termasuk yang tersembunyi<br><br>
+                ⚠️ <strong>Perhatian:</strong> Hati-hati menggunakan <code>innerHTML</code> karena bisa memasukkan kode HTML.
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <span class="lang-badge">JavaScript</span>
+                </div>
+<pre>
+<span class="keyword">let</span> <span class="variable">kotak</span> = <span class="variable">document</span>.<span class="method">getElementById</span>(<span class="string">"kotak-konten"</span>);
+
+<span class="comment">// innerText → hanya teks biasa</span>
+<span class="variable">kotak</span>.<span class="method">innerText</span> = <span class="string">"Halo Dunia!"</span>;
+
+<span class="comment">// innerHTML → bisa memasukkan tag HTML</span>
+<span class="variable">kotak</span>.<span class="method">innerHTML</span> = <span class="string">"&lt;strong&gt;Halo&lt;/strong&gt; Dunia!"</span>;
+</pre>
+            </div>
+
+            <div class="demo-area">
+                <span class="demo-label">Demo</span>
+                <div id="kotak-konten" style="padding: 12px; border-radius: 8px; background: rgba(255,255,255,0.03);">
+                    Ini adalah konten awal. Klik tombol di bawah untuk mengubah saya!
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-small" onclick="demoInnerText()">innerText</button>
+            <button class="btn btn-primary btn-small" onclick="demoInnerHTML()" style="background: var(--gradient-2);">innerHTML</button>
+            <button class="btn btn-reset btn-small" onclick="resetDemo3()">↺ Reset</button>
+
+            <div class="result-log" id="result-3">Klik salah satu tombol untuk melihat perbedaannya...</div>
+        </section>
+
+        <!-- ============================================
+             SECTION 4: Mengubah Style / CSS
+             ============================================ -->
+        <section class="section-card" id="section-4">
+            <h2><span class="section-number">4</span> Mengubah Style (CSS)</h2>
+            <p class="section-desc">Cara mengubah tampilan elemen secara langsung dengan JavaScript.</p>
+
+            <div class="explanation">
+                <strong>Cara mengubah CSS via JavaScript:</strong><br>
+                Gunakan property <code>element.style.namaProperty</code>.<br><br>
+                🔑 <strong>Penting:</strong> Nama CSS yang pakai tanda hubung (seperti <code>background-color</code>)
+                harus ditulis dalam format <strong>camelCase</strong> → <code>backgroundColor</code><br><br>
+                Contoh lain: <code>font-size</code> → <code>fontSize</code>, <code>border-radius</code> → <code>borderRadius</code>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <span class="lang-badge">JavaScript</span>
+                </div>
+<pre>
+<span class="keyword">let</span> <span class="variable">kotak</span> = <span class="variable">document</span>.<span class="method">getElementById</span>(<span class="string">"style-box"</span>);
+
+<span class="comment">// Ubah warna background</span>
+<span class="variable">kotak</span>.<span class="variable">style</span>.<span class="method">backgroundColor</span> = <span class="string">"#ff6b6b"</span>;
+
+<span class="comment">// Ubah ukuran & border</span>
+<span class="variable">kotak</span>.<span class="variable">style</span>.<span class="method">width</span> = <span class="string">"200px"</span>;
+<span class="variable">kotak</span>.<span class="variable">style</span>.<span class="method">borderRadius</span> = <span class="string">"50%"</span>;
+</pre>
+            </div>
+
+            <div class="demo-area">
+                <span class="demo-label">Demo</span>
+                <div style="display: flex; justify-content: center; padding: 20px;">
+                    <div class="demo-box" id="style-box">Klik Tombol! ⬇️</div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="demoUbahStyle()">🎨 Ubah Style</button>
+            <button class="btn btn-primary btn-small" onclick="demoUbahStyleLagi()" style="background: var(--gradient-2);">🔄 Ubah Lagi</button>
+            <button class="btn btn-reset btn-small" onclick="resetDemo4()">↺ Reset</button>
+
+            <div class="result-log" id="result-4">Klik tombol untuk mengubah tampilan kotak...</div>
+        </section>
+
+        <!-- ============================================
+             SECTION 5: Event Listener
+             ============================================ -->
+        <section class="section-card" id="section-5">
+            <h2><span class="section-number">5</span> Event Listener</h2>
+            <p class="section-desc">Cara membuat elemen merespon aksi user seperti klik, hover, dan ketikan.</p>
+
+            <div class="explanation">
+                <strong>Apa itu Event?</strong><br>
+                Event adalah "kejadian" yang terjadi di halaman web, misalnya:<br>
+                • <code>click</code> → User mengklik elemen<br>
+                • <code>mouseover</code> → Mouse masuk ke area elemen<br>
+                • <code>mouseout</code> → Mouse keluar dari area elemen<br>
+                • <code>input</code> → User mengetik di form input<br>
+                • <code>keydown</code> → User menekan tombol keyboard<br><br>
+                Kita gunakan <code>addEventListener("namaEvent", fungsi)</code> untuk menambahkan event.
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <span class="lang-badge">JavaScript</span>
+                </div>
+<pre>
+<span class="keyword">let</span> <span class="variable">tombol</span> = <span class="variable">document</span>.<span class="method">getElementById</span>(<span class="string">"event-demo-box"</span>);
+
+<span class="comment">// Tambahkan event listener untuk "click"</span>
+<span class="variable">tombol</span>.<span class="method">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>() {
+    <span class="variable">tombol</span>.<span class="variable">style</span>.<span class="method">backgroundColor</span> = <span class="string">"#51cf66"</span>;
+    <span class="variable">tombol</span>.<span class="method">innerText</span> = <span class="string">"Diklik! ✅"</span>;
+});
+</pre>
+            </div>
+
+            <div class="demo-area">
+                <span class="demo-label">Demo — Klik, Hover, dan Ketik</span>
+
+                <!-- Demo kotak interaktif -->
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <div id="event-demo-box">🖱️ Klik Saya!</div>
+                </div>
+
+                <!-- Demo input -->
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                    <input type="text" class="input-field" id="event-input" placeholder="Coba ketik sesuatu...">
+                    <span id="input-mirror" style="color: var(--accent-1); font-weight: 600;">...</span>
+                </div>
+            </div>
+
+            <button class="btn btn-reset btn-small" onclick="resetDemo5()">↺ Reset</button>
+
+            <div class="result-log" id="result-5">Coba klik kotak ungu di atas, atau ketik di input...</div>
+        </section>
+
+        <!-- ============================================
+             SECTION 6: Membuat & Menghapus Elemen
+             ============================================ -->
+        <section class="section-card" id="section-6">
+            <h2><span class="section-number">6</span> Membuat & Menghapus Elemen</h2>
+            <p class="section-desc">Cara menambahkan elemen baru ke halaman dan menghapus yang sudah ada.</p>
+
+            <div class="explanation">
+                <strong>Langkah membuat elemen baru:</strong><br>
+                1️⃣ <code>document.createElement("tag")</code> → Buat elemen baru<br>
+                2️⃣ Set konten/atribut elemen yang baru dibuat<br>
+                3️⃣ <code>parentElement.appendChild(elemenBaru)</code> → Masukkan ke halaman<br><br>
+                <strong>Menghapus elemen:</strong><br>
+                • <code>elemen.remove()</code> → Hapus elemen dari halaman
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <span class="lang-badge">JavaScript</span>
+                </div>
+<pre>
+<span class="comment">// 1. Buat elemen baru</span>
+<span class="keyword">let</span> <span class="variable">kartuBaru</span> = <span class="variable">document</span>.<span class="method">createElement</span>(<span class="string">"span"</span>);
+
+<span class="comment">// 2. Isi kontennya</span>
+<span class="variable">kartuBaru</span>.<span class="method">innerText</span> = <span class="string">"🌟 Item Baru"</span>;
+<span class="variable">kartuBaru</span>.<span class="method">className</span> = <span class="string">"item-card"</span>;
+
+<span class="comment">// 3. Masukkan ke dalam elemen parent</span>
+<span class="variable">document</span>.<span class="method">getElementById</span>(<span class="string">"daftar-item"</span>).<span class="method">appendChild</span>(<span class="variable">kartuBaru</span>);
+
+<span class="comment">// Untuk menghapus:</span>
+<span class="variable">kartuBaru</span>.<span class="method">remove</span>();
+</pre>
+            </div>
+
+            <div class="demo-area">
+                <span class="demo-label">Demo</span>
+                <div id="daftar-item">
+                    <span class="item-card">📦 Item Awal</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="demoTambahElemen()">➕ Tambah Item</button>
+            <button class="btn btn-danger btn-small" onclick="demoHapusElemen()">🗑️ Hapus Terakhir</button>
+            <button class="btn btn-reset btn-small" onclick="resetDemo6()">↺ Reset</button>
+
+            <div class="result-log" id="result-6">Klik tombol untuk menambah atau menghapus item...</div>
+        </section>
+
+        <!-- ============================================
+             SECTION 7: Latihan — To-Do List Mini
+             ============================================ -->
+        <section class="section-card" id="section-7">
+            <h2><span class="section-number">7</span> Latihan: To-Do List Mini</h2>
+            <p class="section-desc">Gabungkan semua yang sudah dipelajari menjadi sebuah aplikasi sederhana!</p>
+
+            <div class="explanation">
+                <strong>Latihan ini menggabungkan:</strong><br>
+                ✅ <code>getElementById</code> — Mengambil input dan daftar<br>
+                ✅ <code>createElement</code> — Membuat item baru<br>
+                ✅ <code>appendChild</code> — Menambahkan ke daftar<br>
+                ✅ <code>addEventListener</code> — Mendeteksi klik dan keyboard<br>
+                ✅ <code>remove()</code> — Menghapus item<br><br>
+                Coba tambahkan task, lalu hapus dengan tombol "Hapus"!
+            </div>
+
+            <div class="demo-area">
+                <span class="demo-label">To-Do List</span>
+                <div class="todo-input-group">
+                    <input type="text" class="input-field" id="todo-input" placeholder="Tulis tugas baru...">
+                    <button class="btn btn-primary" id="btn-tambah-todo" onclick="tambahTodo()">➕ Tambah</button>
+                </div>
+                <ul id="todo-list">
+                    <p class="todo-empty" id="todo-empty">Belum ada tugas. Coba tambahkan! 👆</p>
+                </ul>
+            </div>
+
+            <div class="result-log" id="result-7">Ketik tugas, lalu klik "Tambah" atau tekan Enter...</div>
+        </section>
+
+        <!-- ============================================
+             FOOTER
+             ============================================ -->
+        <footer class="footer">
+            <p>Dibuat untuk belajar <span>JavaScript DOM</span> — Selamat Belajar! 🚀</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
